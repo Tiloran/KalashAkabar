@@ -13,9 +13,9 @@ namespace strokasim
         {
             char[] chars = "$%#@!*abcdefghijklmnopqrstuvwxyz1234567890?;:ABCDEFGHIJKLMNOPQRSTUVWXYZ^&".ToCharArray();
             string kalashSt = null;
-            for (int j = 0; j < 10000; j++)
-            {
-                Random r = new Random();
+            Random r = new Random();
+            for (int j = 0; j < 10000; j++)            {
+                
                 int i = r.Next(chars.Length);
                 kalashSt += Char.ToString(chars[i]);                
             }            
@@ -37,8 +37,9 @@ namespace strokasim
                     {
                         exist = true;
                         RememberFullSlot = j;
+                        break;
                     }
-                    else if(RememberEmptySlot==-1)
+                    else if(stringname[j]=='\0' && RememberEmptySlot==-1)
                     {
                         RememberEmptySlot = j;
                     }                    
