@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,20 @@ namespace strokasim
     {
         static void Main(string[] args)
         {
-            string kalash = "АллахАкбарКалаш";
+            char[] chars = "$%#@!*abcdefghijklmnopqrstuvwxyz1234567890?;:ABCDEFGHIJKLMNOPQRSTUVWXYZ^&".ToCharArray();
+            string kalash = null;
+            for (int j = 0; j < 10000; j++)
+            {
+                Random r = new Random();
+                int i = r.Next(chars.Length);
+                kalash += Char.ToString(chars[i]);                
+            }
+            
+            DateTime Start; // Время запуска
+            DateTime Stoped; //Время окончания
+            TimeSpan Elapsed = new TimeSpan(); // Разница
+            Start = DateTime.Now; // Старт (Записываем время)
+            
             string[] stringname = new string[kalash.Length];
             int[] intcount = new int[kalash.Length];
             for (int i=0; i<stringname.Length; i++)
@@ -52,13 +66,19 @@ namespace strokasim
                     index = i;
                 }
             }
-            Console.Write("MAX="+ intcount[index].ToString() + " Char is " + stringname[index]);
+            Stoped = DateTime.Now; // Стоп (Записываем время)
+            Elapsed = Stoped.Subtract(Start); // Вычитаем из Stoped (когда код выполнился) время Start (когда код запустили на выполнение)
+            Console.Write("MAX="+ intcount[index].ToString() + " Char is " + stringname[index]+" ms "+ Convert.ToString(Elapsed.TotalMilliseconds));
+
             Console.Read();
         }
 
 
-
         
+
+
+
+
 
     }
 }
