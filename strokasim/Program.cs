@@ -18,14 +18,13 @@ namespace strokasim
                 Random r = new Random();
                 int i = r.Next(chars.Length);
                 kalashSt += Char.ToString(chars[i]);                
-            }
-            char [] kalash = kalashSt.ToCharArray(0,kalashSt.Length);
+            }            
             DateTime Start; // Время запуска
             DateTime Stoped; //Время окончания
             TimeSpan Elapsed = new TimeSpan(); // Разница
             Start = DateTime.Now; // Старт (Записываем время)
-            
-            string[] stringname = new string[kalash.Length];
+            char[] kalash = kalashSt.ToCharArray(0, kalashSt.Length);
+            char[] stringname = new char[kalash.Length];
             int[] intcount = new int[kalash.Length];
             for (int i=0; i<stringname.Length; i++)
             {
@@ -34,19 +33,19 @@ namespace strokasim
                 int RememberFullSlot = -1;
                 for( int j=0; j<stringname.Length; j++)
                 {
-                    if(kalash[i].ToString()==stringname[j])
+                    if(kalash[i]==stringname[j])
                     {
                         exist = true;
                         RememberFullSlot = j;
                     }
-                    else if(stringname[j]==null && RememberEmptySlot==-1)
+                    else if(RememberEmptySlot==-1)
                     {
                         RememberEmptySlot = j;
                     }                    
                 }
                 if(exist==false)
                 {
-                    stringname[RememberEmptySlot] = kalash[i].ToString();
+                    stringname[RememberEmptySlot] = kalash[i];
                     intcount[RememberEmptySlot] += 1;
                 }
                 else
