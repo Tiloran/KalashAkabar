@@ -12,14 +12,14 @@ namespace strokasim
         static void Main(string[] args)
         {
             char[] chars = "$%#@!*abcdefghijklmnopqrstuvwxyz1234567890?;:ABCDEFGHIJKLMNOPQRSTUVWXYZ^&".ToCharArray();
-            string kalash = null;
+            string kalashSt = null;
             for (int j = 0; j < 10000; j++)
             {
                 Random r = new Random();
                 int i = r.Next(chars.Length);
-                kalash += Char.ToString(chars[i]);                
+                kalashSt += Char.ToString(chars[i]);                
             }
-            
+            char [] kalash = kalashSt.ToCharArray(0,kalashSt.Length);
             DateTime Start; // Время запуска
             DateTime Stoped; //Время окончания
             TimeSpan Elapsed = new TimeSpan(); // Разница
@@ -34,7 +34,7 @@ namespace strokasim
                 int RememberFullSlot = -1;
                 for( int j=0; j<stringname.Length; j++)
                 {
-                    if(kalash.Substring(i,1)==stringname[j])
+                    if(kalash[i].ToString()==stringname[j])
                     {
                         exist = true;
                         RememberFullSlot = j;
@@ -46,7 +46,7 @@ namespace strokasim
                 }
                 if(exist==false)
                 {
-                    stringname[RememberEmptySlot] = kalash.Substring(i, 1);
+                    stringname[RememberEmptySlot] = kalash[i].ToString();
                     intcount[RememberEmptySlot] += 1;
                 }
                 else
